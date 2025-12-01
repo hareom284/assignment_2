@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | DoBu Martial Arts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .page-header {
+      background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)),
+                  url('https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1920') center/cover;
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin: 48px 0;
+    }
+    .about-image {
+      width: 100%;
+      height: 400px;
+      background: #e0e0e0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 1.25rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 32px 16px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.875rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .value-card {
+      text-align: center;
+      padding: 32px 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-8px);
+    }
+    .value-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--color-crimson), #ff4757);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 16px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .team-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .team-card:hover {
+      transform: translateY(-8px);
+    }
+    .team-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+    }
+    .team-info {
+      padding: 24px;
+      text-align: center;
+    }
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    .team-role {
+      color: var(--color-crimson);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .team-specialty {
+      color: #666;
+      font-size: 0.875rem;
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 48px auto;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-crimson);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+      padding-left: 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background: var(--color-crimson);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--color-crimson);
+    }
+    .timeline-year {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      margin-bottom: 8px;
+    }
+    @media (max-width: 968px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .stats-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO DISCLAIMER BANNER -->
+  <div class="demo-disclaimer">
+    <div class="demo-disclaimer-content">
+      <span><span class="demo-icon">⚠️</span><strong>DEMO WEBSITE:</strong> This is a student project for educational purposes only. All data, images, and information are fictional and for demonstration purposes.</span>
+      <span><span class="demo-icon">⚠️</span><strong>DEMO WEBSITE:</strong> This is a student project for educational purposes only. All data, images, and information are fictional and for demonstration purposes.</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="navbar container">
+      <div class="logo">
+        <span style="color: var(--color-crimson);">⚡</span>
+        <span>DoBu MA</span>
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="classes.html" class="nav-link">Classes</a></li>
+        <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+        <li><a href="membership.html" class="nav-link">Membership</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="membership.html" class="btn btn-primary btn-small coming-soon">Free Trial</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1>About DoBu Martial Arts</h1>
+      <p style="font-size: 1.25rem; margin-top: 16px;">Excellence in martial arts training since 2010</p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <h2>Our Story</h2>
+          <p class="text-large">DoBu Martial Arts was founded in 2010 with a simple mission: to provide world-class martial arts training in a supportive, inclusive environment.</p>
+          <p>What started as a small dojo with just 15 students has grown into a premier martial arts academy, serving over 500+ active members across all age groups and skill levels.</p>
+          <p>Our founder, Mauricio Gomez, brought together decades of experience across multiple martial arts disciplines to create a unique training philosophy that blends traditional Eastern martial arts with modern training techniques, emphasizing not just physical prowess, but mental discipline, respect, and personal growth.</p>
+          <p>Today, DoBu Martial Arts stands as a testament to the transformative power of martial arts, having helped thousands of students achieve their goals, whether that's competing at the highest levels, improving fitness, or building confidence.</p>
+        </div>
+        <div class="about-image">
+          🥋 Dojo Image
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center">DoBu By The Numbers</h2>
+      <p class="text-center text-muted mb-lg">Our achievements speak for themselves</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-count="500">500+</div>
+          <div class="stat-label">Active Members</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="15">15+</div>
+          <div class="stat-label">Expert Instructors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="25">25+</div>
+          <div class="stat-label">Weekly Classes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="14">14</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Our Core Values</h2>
+      <p class="text-center text-muted mb-lg">The principles that guide everything we do</p>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3>Excellence</h3>
+          <p class="text-muted">We strive for excellence in every aspect of training, from technique to character development.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <h3>Respect</h3>
+          <p class="text-muted">Mutual respect between students, instructors, and the martial arts tradition is fundamental.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💪</div>
+          <h3>Discipline</h3>
+          <p class="text-muted">Through consistent practice and dedication, we build physical and mental discipline.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌟</div>
+          <h3>Growth</h3>
+          <p class="text-muted">We believe in continuous improvement and personal development beyond the dojo.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">👥</div>
+          <h3>Community</h3>
+          <p class="text-muted">Our dojo is a supportive family where everyone encourages each other's success.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <h3>Integrity</h3>
+          <p class="text-muted">We teach martial arts with honesty, transparency, and ethical responsibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR HISTORY -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center">Our Journey</h2>
+      <p class="text-center text-muted mb-lg">Major milestones in the DoBu story</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2010</div>
+          <h4>The Beginning</h4>
+          <p class="text-muted">DoBu Martial Arts opened its doors with Mauricio Gomez as head instructor, offering classes in Brazilian Jiu-Jitsu and Muay Thai to 15 founding members.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2013</div>
+          <h4>Expansion</h4>
+          <p class="text-muted">Moved to a larger facility with dedicated training areas for striking, grappling, and weapons. Added Krav Maga and Taekwondo to our class offerings.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2016</div>
+          <h4>Competition Success</h4>
+          <p class="text-muted">DoBu students won their first national championship titles in both BJJ and Muay Thai, establishing our reputation for competitive excellence.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <h4>Youth Program Launch</h4>
+          <p class="text-muted">Introduced specialized programs for children and teens, with age-appropriate curriculum focusing on character development and anti-bullying.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <h4>Facility Upgrade</h4>
+          <p class="text-muted">Complete renovation with state-of-the-art training equipment, expanded mat space, and dedicated strength & conditioning area.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <h4>Today</h4>
+          <p class="text-muted">Serving 500+ members with 15 expert instructors, offering 25+ weekly classes across 8 martial arts disciplines. Recognized as a premier martial arts academy committed to excellence in training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET OUR TEAM -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Meet Our Instructors</h2>
+      <p class="text-center text-muted mb-lg">World-class instructors dedicated to your success</p>
+
+      <div class="team-grid">
+        <div class="team-card clickable coming-soon">
+          <div class="team-image">🥋</div>
+          <div class="team-info">
+            <h3 class="team-name">Mauricio Gomez</h3>
+            <div class="team-role">Gym Owner / Head Coach</div>
+            <p class="team-specialty">4th Dan Judo, 3rd Dan Jiu-jitsu, 1st Dan Karate, Muay Thai Coach</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🥊</div>
+          <div class="team-info">
+            <h3 class="team-name">Sarah Nova</h3>
+            <div class="team-role">Assistant Martial Arts Coach</div>
+            <p class="team-specialty">5th Dan Karate</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🤼</div>
+          <div class="team-info">
+            <h3 class="team-name">Guy Victory</h3>
+            <div class="team-role">Assistant Martial Arts Coach</div>
+            <p class="team-specialty">2nd Dan Jiu-jitsu, 1st Dan Judo</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🥋</div>
+          <div class="team-info">
+            <h3 class="team-name">Morris Davis</h3>
+            <div class="team-role">Assistant Martial Arts Coach</div>
+            <p class="team-specialty">Muay Thai Coach, 3rd Dan Karate</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #fa709a, #fee140);">🛡️</div>
+          <div class="team-info">
+            <h3 class="team-name">Traci Santiago</h3>
+            <div class="team-role">Fitness Coach</div>
+            <p class="team-specialty">BSc Sports Science, Nutrition Specialist</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #30cfd0, #330867);">🥊</div>
+          <div class="team-info">
+            <h3 class="team-name">Harpreet Kaur</h3>
+            <div class="team-role">Fitness Coach</div>
+            <p class="team-specialty">BSc Physiotherapy, MSc Sports Science</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">👶</div>
+          <div class="team-info">
+            <h3 class="team-name">Lisa Chen</h3>
+            <div class="team-role">Youth Program Coordinator</div>
+            <p class="team-specialty">Child Development Specialist</p>
+          </div>
+        </div>
+
+        <div class="team-card clickable coming-soon">
+          <div class="team-image" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">⚔️</div>
+          <div class="team-info">
+            <h3 class="team-name">James Rodriguez</h3>
+            <div class="team-role">Self-Defense Instructor</div>
+            <p class="team-specialty">Krav Maga Specialist, 12 years experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="section section-dark">
+    <div class="container text-center">
+      <h2 style="color: white;">Ready to Start Your Journey?</h2>
+      <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; margin: 24px 0 32px;">Join the DoBu family and discover what you're capable of</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="membership.html" class="btn btn-primary coming-soon">Start Free Trial</a>
+        <a href="schedule.html" class="btn btn-outline">View Schedule</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Instructors</a></li>
+            <li><a href="#">Facilities</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>123 Main Street<br>City, Country<br>Postal Code: 12345</p>
+          <p>Phone: +44 20 1234 5678<br>Email: info@dobuMA.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2024</span> DoBu Martial Arts. All rights reserved.</p>
+        <p style="font-size: 0.875rem; margin-top: 8px;">
+          Developed by <a href="https://www.upwork.com/freelancers/hareom284" target="_blank" rel="noopener noreferrer" style="color: var(--color-crimson); text-decoration: none;">Hare Om</a> | FED-0725
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery (Local) -->
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script>
+    // Animated counter for stats (jQuery)
+    $(document).ready(function() {
+      let animated = false;
+
+      function animateCounters() {
+        $('.stat-number').each(function() {
+          const $this = $(this);
+          const countTo = parseInt($this.data('count'));
+          const currentText = $this.text();
+          const hasPlus = currentText.includes('+');
+
+          $({ countNum: 0 }).animate({
+            countNum: countTo
+          }, {
+            duration: 2000,
+            easing: 'swing',
+            step: function() {
+              $this.text(Math.floor(this.countNum) + (hasPlus ? '+' : ''));
+            },
+            complete: function() {
+              $this.text(countTo + (hasPlus ? '+' : ''));
+            }
+          });
+        });
+      }
+
+      // Trigger animation when stats section is visible
+      $(window).on('scroll', function() {
+        if (!animated) {
+          const statsSection = $('.stats-grid');
+          if (statsSection.length) {
+            const scrollTop = $(window).scrollTop();
+            const statsTop = statsSection.offset().top;
+            const windowHeight = $(window).height();
+
+            if (scrollTop + windowHeight > statsTop + 100) {
+              animateCounters();
+              animated = true;
+            }
+          }
+        }
+      });
+    });
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  <!-- COMING SOON MODAL -->
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-icon">🚧</div>
+      <h3>Coming Soon!</h3>
+      <p>This feature is currently under development and will be available in a future update.</p>
+      <p style="font-size: 0.875rem; color: #666; margin-top: -16px;">This is a demo website for educational purposes.</p>
+      <button class="modal-close">Got It!</button>
+    </div>
+  </div>
+
+</body>
+</html>

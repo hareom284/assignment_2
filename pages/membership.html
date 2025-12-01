@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership & Pricing | DoBu Martial Arts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .page-header {
+      background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)),
+                  url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1920') center/cover;
+      padding: 80px 0;
+      color: white;
+      text-align: center;
+    }
+    .billing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 32px 0;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 30px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 30px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--color-crimson);
+    }
+    input:checked + .slider:before {
+      transform: translateX(30px);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .pricing-card {
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .pricing-card.popular {
+      border: 3px solid var(--color-gold);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--color-gold);
+      color: var(--color-black);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      margin: 16px 0;
+    }
+    .price-period {
+      font-size: 1rem;
+      color: var(--color-medium-gray);
+    }
+    .features-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+    .features-list li {
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .features-list li:before {
+      content: "✓";
+      color: var(--color-green);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 48px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    .comparison-table th {
+      background: var(--color-black);
+      color: white;
+      font-weight: 600;
+    }
+    .comparison-table tr:hover {
+      background: var(--color-light-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO DISCLAIMER BANNER -->
+  <div class="demo-disclaimer">
+    <div class="demo-disclaimer-content">
+      <span><span class="demo-icon">⚠️</span><strong>DEMO WEBSITE:</strong> This is a student project for educational purposes only. All data, images, and information are fictional and for demonstration purposes.</span>
+      <span><span class="demo-icon">⚠️</span><strong>DEMO WEBSITE:</strong> This is a student project for educational purposes only. All data, images, and information are fictional and for demonstration purposes.</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="navbar container">
+      <div class="logo">
+        <span style="color: var(--color-crimson);">⚡</span>
+        <span>DoBu MA</span>
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="classes.html" class="nav-link">Classes</a></li>
+        <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+        <li><a href="membership.html" class="nav-link active">Membership</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="membership.html" class="btn btn-primary btn-small coming-soon">Free Trial</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Membership Options & Pricing</h1>
+      <p style="font-size: 1.25rem; margin-top: 16px;">Choose the plan that fits your lifestyle</p>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Billing Toggle -->
+      <div class="billing-toggle">
+        <span style="font-weight: 600;">Monthly</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="billing-toggle">
+          <span class="slider"></span>
+        </label>
+        <span style="font-weight: 600;">Annual <span style="color: var(--color-green);">(Save 20%)</span></span>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="pricing-grid">
+        <!-- BASIC PLAN -->
+        <div class="pricing-card">
+          <h3 style="margin-top: 0;">BASIC</h3>
+          <p class="text-muted">1 martial art - 2 sessions per week</p>
+          <div class="price">
+            <span class="price-amount" data-monthly="25">£25</span>
+          </div>
+          <div class="price-period">/month</div>
+
+          <ul class="features-list">
+            <li>2 classes per week</li>
+            <li>Single martial art</li>
+            <li>Gym access</li>
+            <li>Locker rental</li>
+            <li>No contract required</li>
+          </ul>
+
+          <button class="btn btn-primary coming-soon" style="width: 100%;">Get Started</button>
+        </div>
+
+        <!-- INTERMEDIATE PLAN -->
+        <div class="pricing-card">
+          <h3 style="margin-top: 0;">INTERMEDIATE</h3>
+          <p class="text-muted">1 martial art - 3 sessions per week</p>
+          <div class="price">
+            <span class="price-amount" data-monthly="35">£35</span>
+          </div>
+          <div class="price-period">/month</div>
+
+          <ul class="features-list">
+            <li>3 classes per week</li>
+            <li>Single martial art</li>
+            <li>Gym access</li>
+            <li>Sauna & steam room</li>
+            <li>10% merchandise discount</li>
+          </ul>
+
+          <button class="btn btn-primary coming-soon" style="width: 100%;">Get Started</button>
+        </div>
+
+        <!-- ADVANCED PLAN (POPULAR) -->
+        <div class="pricing-card popular">
+          <span class="popular-badge">POPULAR</span>
+          <h3 style="margin-top: 0;">ADVANCED</h3>
+          <p class="text-muted">Any 2 martial arts - 5 sessions per week</p>
+          <div class="price">
+            <span class="price-amount" data-monthly="45">£45</span>
+          </div>
+          <div class="price-period">/month</div>
+
+          <ul class="features-list">
+            <li>5 classes per week</li>
+            <li>Any 2 martial arts</li>
+            <li>Gym access</li>
+            <li>Sauna & steam room</li>
+            <li>15% merchandise discount</li>
+            <li>1 guest pass per month</li>
+          </ul>
+
+          <button class="btn btn-primary coming-soon" style="width: 100%;">Get Started</button>
+        </div>
+
+        <!-- ELITE PLAN -->
+        <div class="pricing-card">
+          <h3 style="margin-top: 0;">ELITE</h3>
+          <p class="text-muted">Unlimited classes</p>
+          <div class="price">
+            <span class="price-amount" data-monthly="60">£60</span>
+          </div>
+          <div class="price-period">/month</div>
+
+          <ul class="features-list">
+            <li>Unlimited classes</li>
+            <li>All martial arts</li>
+            <li>Priority booking</li>
+            <li>All facilities access</li>
+            <li>20% merchandise discount</li>
+            <li>2 guest passes/month</li>
+          </ul>
+
+          <button class="btn btn-primary coming-soon" style="width: 100%;">Get Started</button>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <h2 class="text-center mt-lg">Compare All Plans</h2>
+      <div style="overflow-x: auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Features</th>
+              <th>Basic</th>
+              <th>Intermediate</th>
+              <th>Advanced</th>
+              <th>Elite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Classes per week</td>
+              <td>2</td>
+              <td>3</td>
+              <td>5</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Martial arts choices</td>
+              <td>1</td>
+              <td>1</td>
+              <td>2</td>
+              <td>All</td>
+            </tr>
+            <tr>
+              <td>Gym access</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Sauna & Steam room</td>
+              <td>✗</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Priority booking</td>
+              <td>✗</td>
+              <td>✗</td>
+              <td>✗</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Merchandise discount</td>
+              <td>✗</td>
+              <td>10%</td>
+              <td>15%</td>
+              <td>20%</td>
+            </tr>
+            <tr>
+              <td>Guest passes/month</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Contract</td>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+              <td>None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ADDITIONAL OPTIONS -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center">Additional Options</h2>
+      <p class="text-center text-muted mb-lg">Flexible options and specialized training</p>
+
+      <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
+        <div class="card coming-soon clickable">
+          <h3>Private Tuition</h3>
+          <div class="price">£15</div>
+          <p class="text-muted">One-on-one training per hour</p>
+          <button class="btn btn-outline coming-soon" style="width: 100%; margin-top: 16px;">Book Now</button>
+        </div>
+
+        <div class="card coming-soon clickable">
+          <h3>Self-Defence Course</h3>
+          <div class="price">£80</div>
+          <p class="text-muted">6-week beginners course (2x 1-hour sessions per week)</p>
+          <button class="btn btn-outline coming-soon" style="width: 100%; margin-top: 16px;">Enroll</button>
+        </div>
+
+        <div class="card coming-soon clickable">
+          <h3>Personal Training</h3>
+          <div class="price">£35</div>
+          <p class="text-muted">Fitness training per hour</p>
+          <button class="btn btn-outline coming-soon" style="width: 100%; margin-top: 16px;">Book Now</button>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="max-width: 700px; margin: 32px auto 0;">
+        <div class="card">
+          <h4>Fitness Room Access</h4>
+          <div class="price" style="font-size: 2rem;">£6</div>
+          <p class="text-muted">Per visit</p>
+        </div>
+
+        <div class="card">
+          <h4>Junior Membership</h4>
+          <div class="price" style="font-size: 2rem;">£25</div>
+          <p class="text-muted">All kids martial arts sessions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL OFFERS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">Special Offers</h2>
+      <div class="grid grid-2" style="max-width: 900px; margin: 32px auto 0;">
+        <div class="card" style="border-left: 4px solid var(--color-crimson);">
+          <h4>🎉 New Member Special</h4>
+          <p>First month 50% off any membership plan!</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--color-gold);">
+          <h4>🎁 Refer a Friend</h4>
+          <p>Get 1 free month when they join</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--color-navy);">
+          <h4>🎓 Student Discount</h4>
+          <p>15% off with valid student ID</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--color-green);">
+          <h4>👥 Corporate Program</h4>
+          <p>Special rates for groups of 5+</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT INFO -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 class="text-center">Payment Information</h2>
+      <div style="max-width: 700px; margin: 32px auto 0; line-height: 1.8;">
+        <ul style="list-style: none; padding: 0;">
+          <li>✓ All memberships include access to changing rooms and lockers</li>
+          <li>✓ No long-term contracts required</li>
+          <li>✓ Cancel anytime with 30 days notice</li>
+          <li>✓ We accept: Credit/Debit Cards, PayPal, Direct Debit, Cash, Bank Transfer</li>
+          <li>✓ Auto-renewal can be disabled in account settings</li>
+          <li>✓ Tax included in displayed prices</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="section">
+    <div class="container text-center">
+      <h2>Ready to Start Your Martial Arts Journey?</h2>
+      <p class="text-muted" style="font-size: 1.125rem; margin: 16px 0 32px;">Try us risk-free with a FREE trial class!</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-primary btn-large coming-soon">Book Free Trial</a>
+        <a href="contact.html" class="btn btn-outline btn-large">Questions? Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Instructors</a></li>
+            <li><a href="#">Facilities</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>123 Main Street<br>City, Country<br>Postal Code: 12345</p>
+          <p>Phone: +44 20 1234 5678<br>Email: info@dobuMA.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2024</span> DoBu Martial Arts. All rights reserved.</p>
+        <p style="font-size: 0.875rem; margin-top: 8px;">
+          Developed by <a href="https://www.upwork.com/freelancers/hareom284" target="_blank" rel="noopener noreferrer" style="color: var(--color-crimson); text-decoration: none;">Hare Om</a> | FED-0725
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- jQuery (Local) -->
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+  <!-- COMING SOON MODAL -->
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-icon">🚧</div>
+      <h3>Coming Soon!</h3>
+      <p>This feature is currently under development and will be available in a future update.</p>
+      <p style="font-size: 0.875rem; color: #666; margin-top: -16px;">This is a demo website for educational purposes.</p>
+      <button class="modal-close">Got It!</button>
+    </div>
+  </div>
+
+</body>
+</html>
